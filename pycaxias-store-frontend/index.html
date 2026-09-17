@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#64FF00" />
+    <title>PyCaxias — Loja</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#catalogo" aria-label="PyCaxias, ir para o catálogo">PYCAXIAS<span>_</span></a>
+      <p>LOJA LOCAL</p>
+      <span class="api-indicator" id="api-status">API: verificando</span>
+      <span class="api-indicator" id="webmcp-status">WebMCP: verificando</span>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="eyebrow">EDIÇÃO 2026</p>
+        <h1 id="hero-title">O que você usa<br /><em>para construir.</em></h1>
+        <p class="hero-copy">Produtos PyCaxias, direto do catálogo local.</p>
+        <a class="button" href="#catalogo">Ver catálogo <span>↓</span></a>
+      </section>
+
+      <section class="catalog" id="catalogo" aria-labelledby="catalog-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CATÁLOGO</p>
+            <h2 id="catalog-title">Selecione seu item.</h2>
+          </div>
+          <form id="search-form" class="search" role="search">
+            <label class="sr-only" for="search">Buscar produto</label>
+            <input id="search" name="query" maxlength="100" placeholder="Buscar no catálogo" />
+            <button type="submit">Buscar</button>
+          </form>
+        </div>
+        <div id="product-list" class="products" aria-live="polite"></div>
+      </section>
+
+      <section class="operations" aria-label="Operações da loja">
+        <article class="panel checkout">
+          <p class="eyebrow">NOVO PEDIDO</p>
+          <h2>Reserve agora.</h2>
+          <form id="order-form">
+            <label>SKU <input id="order-sku" name="sku" required pattern="[A-Z]{3}-[0-9]{4}" placeholder="ADE-2002" /></label>
+            <label>Quantidade <input name="quantity" type="number" min="1" max="100" value="1" required /></label>
+            <button class="button" type="submit">Criar pedido <span>→</span></button>
+          </form>
+        </article>
+
+        <article class="panel order-status">
+          <p class="eyebrow">MEUS PEDIDOS</p>
+          <h2>Acompanhe.</h2>
+          <form id="lookup-form" class="inline-form">
+            <label class="sr-only" for="order-id">Código do pedido</label>
+            <input id="order-id" name="order_id" required placeholder="ORD-..." />
+            <button type="submit">Consultar</button>
+          </form>
+          <div id="order-result" class="order-result" aria-live="polite">Informe um código para consultar.</div>
+        </article>
+
+        <article class="panel stock-panel">
+          <p class="eyebrow">ESTOQUE</p>
+          <h2>Reposição local.</h2>
+          <form id="restock-form" class="inline-form">
+            <label class="sr-only" for="restock-sku">SKU</label>
+            <input id="restock-sku" name="sku" required pattern="[A-Z]{3}-[0-9]{4}" placeholder="SKU" />
+            <label class="sr-only" for="restock-units">Unidades</label>
+            <input id="restock-units" name="units" type="number" min="1" max="1000" value="1" required />
+            <button type="submit">Repor</button>
+          </form>
+        </article>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <footer>PyCaxias <span>•</span> catálogo e operações locais</footer>
+    <script src="app.js"></script>
+  </body>
+</html>
