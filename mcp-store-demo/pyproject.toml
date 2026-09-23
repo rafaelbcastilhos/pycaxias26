@@ -1,0 +1,41 @@
+[project]
+name = "mcp-store-demo"
+version = "0.1.0"
+description = "Demo de MCP: uma loja (catalogo, compra, estoque) exposta como MCP Server"
+authors = [{ name = "Rafael Castilhos" }]
+readme = "README.md"
+requires-python = ">=3.11,<4.0"
+dependencies = [
+    "mcp (>=1.9.0)",
+    "pydantic (>=2.7)",
+    "pydantic-settings (>=2.3)",
+]
+
+[project.scripts]
+store-server = "mcp_store.server.__main__:main"
+
+[tool.poetry]
+packages = [{ include = "mcp_store", from = "src" }]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2"
+pytest-asyncio = "^0.23"
+ruff = "^0.5"
+
+[build-system]
+requires = ["poetry-core>=2.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+# Espelho interno do PyPI (rede Meli). Fora da rede corporativa, remova este
+# bloco: o Poetry volta a resolver do PyPI publico.
+[[tool.poetry.source]]
+name = "meli"
+url = "https://pypi.artifacts.furycloud.io/simple"
+priority = "primary"
